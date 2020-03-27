@@ -5,11 +5,19 @@ const Weather = (props) => {
         <div className="infoWeather">
             {props.city &&
                 <div>
-                    <img src={props.icon} alt="smth alt"/>
-                    <p>Розміщення: {props.city}, {props.country}</p>
-                    <p>Температура: {props.temp}</p>
-                    <p>Тиск: {props.pressure} мм.рт.ст.</p>
-                    <p>Захід сонця: {props.sunset}</p>
+                    <div>
+                        <p>{props.city}, {props.country}</p>
+                        <p>{props.date.toString()}</p>
+                    </div>
+                    <div>
+                        <div>
+                            <img src={props.icon} alt="smth alt"/>
+                            <p>Температура: {props.temp}&#176;</p>
+                        </div>
+                        <div>
+                            <p>Feels like: {props.feels_like}&#176;</p>
+                        </div>
+                    </div>
                 </div>
             }
             <p className="error">{props.error}</p>

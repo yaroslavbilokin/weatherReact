@@ -4,12 +4,8 @@ body {
   font-family: "Open Sans", serif;
 }
 
-.wrapper {
-  height: 1000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+body {
+  height: 100vh;
   background: rgba(45,176,224,1);
   background: -moz-linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
   background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(45,176,224,1)), color-stop(100%, rgba(96,40,168,1)));
@@ -20,7 +16,34 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2db0e0', endColorstr='#6028a8', GradientType=1 );
 }
 
-.main {
+.weatherBlock {
+  padding: 20px;
+}
+
+.info {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.form input {
+  width: 300px;
+}
+
+.form button {
+  width: 100px;
+}
+
+.form input, button {
+  height: 50px;
+  padding: 0;
+  border: none;
+}
+
+/* .main {
   background: #2a6bb1;
   box-shadow: 0px 2px 80px -20px rgba(0,0,0,0.5);
   width: 60%;
@@ -117,4 +140,4 @@ button:active {
 .error {
   color: #041f3c;
   font-weight: bold;
-}
+} */
