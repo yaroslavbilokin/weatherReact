@@ -104,7 +104,7 @@ class App extends React.Component {
     const {fiveDayForecast, currentDayWeather} = this.state;
     return (
       
-          <div className="container">
+          <div className="">
               <div>
                 <div className="info">
                   <Info />
@@ -113,7 +113,7 @@ class App extends React.Component {
                   <Form weatherMethod={this.gettingWeather}/>
                 </div>
               </div>
-              <div>
+              <div className="info-block">
                   <Weather 
                       temp={Math.floor(this.state.temp)}
                       city={this.state.city}

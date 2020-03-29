@@ -2,6 +2,23 @@
 
 body {
   font-family: "Open Sans", serif;
+  background-image: url("./background2.jpeg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  height: 100vh;
+  
+}
+.info-block {
+  background-image: url("./background.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .currentWeather {
