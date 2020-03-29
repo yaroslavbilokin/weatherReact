@@ -12,7 +12,7 @@ const Weather = (props) => {
                     <div>
                         <div>
                             <img src={props.icon} alt="smth alt"/>
-                            <p>Температура: {props.temp}&#176;</p>
+                            <p>{props.temp}&#176;</p>
                         </div>
                         <div>
                             <p>Feels like: {props.feels_like}&#176;</p>

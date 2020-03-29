@@ -3,6 +3,7 @@ import Info from "./components/info";
 import Form from "./components/form";
 import Weather from "./components/weather";
 import WeatherForecast from "./components/weatherForecast";
+import CurrentDayWeather from "./components/currentDayWeather";
 
 const API_KEY = "9252cbb87e904af3fa32880898422f10";
 
@@ -20,7 +21,8 @@ class App extends React.Component {
     sunset: undefined,
     error: undefined,
     icon: undefined,
-    fiveDayForecast: undefined
+    fiveDayForecast: undefined,
+    currentDayWeather: undefined
   };
 
   gettingWeather = async (e) => {
@@ -39,19 +41,18 @@ class App extends React.Component {
         );
         const five_days_data = await weather_api.json();
         const weatherList = five_days_data.list;
-
+        
         const fiveDayForecast = weatherList.filter((obj) => {
           return obj.dt_txt.includes("12:00:00")
         }) 
-        console.log(fiveDayForecast)
-
-
 
         const api_url = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
         );
         const data = await api_url.json();
         console.log(data)
+        const currentDate = new Date(data.dt*1000);
+        console.log(currentDate.getDate()) 
         const weather = data.weather[0];
         const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
         const sunset = data.sys.sunset;
@@ -59,6 +60,12 @@ class App extends React.Component {
         const realTime = new Date(data.dt*1000);
 
         const sunset_date = sunset_unix_date.getHours() + ":" + sunset_unix_date.getMinutes() + ":" + sunset_unix_date.getSeconds();
+
+        const currentDayWeather = weatherList.filter((obj) => {
+            const date = new Date(obj.dt*1000);
+            return date.getDate()===currentDate.getDate();
+        })
+        console.log(currentDayWeather)
         this.setState({
           temp: data.main.temp,
           city: data.name,
@@ -70,11 +77,9 @@ class App extends React.Component {
           sunset: sunset_date,
           error: "",
           icon: iconUrl,
-          fiveDayForecast: fiveDayForecast
+          fiveDayForecast: fiveDayForecast,
+          currentDayWeather: currentDayWeather
         });
-        console.log(this.state)
-        console.log(this.state.date)
-        
       } else {
         this.setState({
           temp: undefined,
@@ -87,7 +92,8 @@ class App extends React.Component {
           sunrise: undefined,
           sunset: undefined,
           error: "Введіть назву міста!",
-          fiveDayForecast: undefined
+          fiveDayForecast: undefined,
+          currentDayWeather: undefined
         })
       }
 
@@ -95,31 +101,38 @@ class App extends React.Component {
   }
   
   render() {
-    const {fiveDayForecast} = this.state;
+    const {fiveDayForecast, currentDayWeather} = this.state;
     return (
       
           <div className="container">
-              <div className="info">
-                <Info />
+              <div>
+                <div className="info">
+                  <Info />
+                </div>
+                <div className="form">
+                  <Form weatherMethod={this.gettingWeather}/>
+                </div>
               </div>
-              <div className="form">
-                <Form weatherMethod={this.gettingWeather}/>
+              <div>
+                  <Weather 
+                      temp={Math.floor(this.state.temp)}
+                      city={this.state.city}
+                      date={this.state.date}
+                      country={this.state.country}
+                      feels_like={this.state.feels_like}
+                      pressure={Math.floor(this.state.pressure*0.750062)}
+                      sunset={this.state.sunset}
+                      icon={this.state.icon}
+                      error={this.state.error}
+                  />
+                  <div className="row currentWeather">
+                    <CurrentDayWeather currentDayWeather={currentDayWeather}/>
+                  </div>
+                  <div className="row">
+                    <WeatherForecast fiveDayForecast={fiveDayForecast}/>
+                  </div>
               </div>
-              <Weather 
-                  temp={Math.floor(this.state.temp)}
-                  city={this.state.city}
-                  date={this.state.date}
-                  country={this.state.country}
-                  feels_like={this.state.feels_like}
-                  pressure={Math.floor(this.state.pressure*0.750062)}
-                  sunset={this.state.sunset}
-                  icon={this.state.icon}
-                  error={this.state.error}
-                />
-              <div className="row">
-                <WeatherForecast fiveDayForecast={fiveDayForecast}/>
-              </div>
-              </div>
+            </div>
     );
   }
 }
