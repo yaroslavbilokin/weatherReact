@@ -6,16 +6,17 @@ const Weather = (props) => {
             {props.city &&
                 <div>
                     <div>
-                        <p>{props.city}, {props.country}</p>
-                        <p>{props.date.toString()}</p>
+                        <div className="icon-temp-block">
+                            <h1>{props.temp}&#176;</h1>
+                            <img className="current-weather-icon" src={props.icon} alt="smth alt"/>
+                        </div>
+                        <h3>{props.city}, {props.country}</h3>
+                        <p className="current-date">{props.date.toString()}</p>
                     </div>
                     <div>
+                        
                         <div>
-                            <img src={props.icon} alt="smth alt"/>
-                            <p>{props.temp}&#176;</p>
-                        </div>
-                        <div>
-                            <p>Feels like: {props.feels_like}&#176;</p>
+                            <p>Відчувається як: {Math.floor(props.feels_like)}&#176;</p>
                         </div>
                     </div>
                 </div>

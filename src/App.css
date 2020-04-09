@@ -10,10 +10,6 @@ body {
   
 }
 .info-block {
-  background-image: url("./background.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover;
   width: 80%;
   margin: auto;
   border-radius: 10px;
@@ -60,6 +56,23 @@ body {
   border: none;
 }
 
+.current-date {
+  opacity: 0.6;
+}
+
+.current-weather-icon {
+  width: 70px;
+}
+
+.icon-temp-block {
+  display: flex;
+}
+
+.icon-temp-block h1 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
 /* .main {
   background: #2a6bb1;
   box-shadow: 0px 2px 80px -20px rgba(0,0,0,0.5);
