@@ -68,7 +68,7 @@ body {
   display: flex;
 }
 
-.icon-temp-block h1 {
+.icon-temp-block h1, h5 {
   margin: 0;
   display: flex;
   align-items: center;

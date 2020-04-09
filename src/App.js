@@ -45,6 +45,7 @@ class App extends React.Component {
         const fiveDayForecast = weatherList.filter((obj) => {
           return obj.dt_txt.includes("12:00:00")
         }) 
+        console.log(fiveDayForecast)
 
         const api_url = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
@@ -65,7 +66,6 @@ class App extends React.Component {
             const date = new Date(obj.dt*1000);
             return date.getDate()===currentDate.getDate();
         })
-        console.log(currentDayWeather)
         this.setState({
           temp: data.main.temp,
           city: data.name,

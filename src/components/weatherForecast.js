@@ -6,10 +6,12 @@ const WeatherForecast = ({fiveDayForecast}) => {
             const iconUrl = "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png";
             return (
                 <div key={day.dt} className="weatherBlock">
-                    <img src={iconUrl} alt="smth alt"/>
-                    <p>{day.main.temp}&#176;</p>
-                    <p>Feels like: {day.main.feels_like}&#176;</p>
-                    <p>Pressure: {day.main.pressure}</p>
+                    <div className="icon-temp-block">
+                        <img src={iconUrl} alt="smth alt"/>
+                        <h5>{Math.floor(day.main.temp)}&#176;</h5>
+                    </div>
+                    <p>Відчувається: {Math.floor(day.main.feels_like)}&#176;</p>
+                    <p>Тиск: {day.main.pressure}</p>
                 </div>
             );
         })
